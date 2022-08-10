@@ -25,6 +25,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'activeadmin'
+
+# Plus integrations with:
+gem 'devise'
+
 gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
