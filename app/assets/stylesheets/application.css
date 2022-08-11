@@ -13,4 +13,23 @@
  *= require bootstrap
  *= require_tree .
  *= require_self
+ *= require apexcharts.css
+ *= require app-dark.css
+ *= require app-light.css
+ *= require app-rtl.css
+ *= require bootstrap-datepicker.css
+ *= require dataTables.bootstrap4.css
+ *= require daterangepicker.css
+ *= require dropzone.css
+ *= require dropzone.min.css
+ *= require feather.css
+ *= require fullcalendar.css
+ *= require jquery.steps.css
+ *= require jquery.timepicker.css
+ *= require perfect-scrollbar.css
+ *= require quill.snow.css
+ *= require select2-bootstrap4.css
+ *= require simplebar.css
+ *= require select2.css
+ *= require uppy.min.css
  */
