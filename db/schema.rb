@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_12_062451) do
+ActiveRecord::Schema.define(version: 2022_08_12_115515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,8 +54,25 @@ ActiveRecord::Schema.define(version: 2022_08_12_062451) do
     t.string "address"
     t.integer "salary"
     t.string "contact"
+    t.bigint "manager_id"
+    t.bigint "restaurant_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
+    t.index ["manager_id"], name: "index_employees_on_manager_id"
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+    t.index ["restaurant_id"], name: "index_employees_on_restaurant_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "owner"
+    t.decimal "perCut"
+    t.time "openingHours"
+    t.time "closingHours"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "manager_id"
+    t.index ["manager_id"], name: "index_restaurants_on_manager_id"
   end
 
 end
