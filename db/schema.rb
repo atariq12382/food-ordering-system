@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_12_115515) do
+ActiveRecord::Schema.define(version: 2022_08_14_092816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,22 @@ ActiveRecord::Schema.define(version: 2022_08_12_115515) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_categories_on_restaurant_id"
+  end
+
+  create_table "deals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_deals_on_restaurant_id"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,6 +76,16 @@ ActiveRecord::Schema.define(version: 2022_08_12_115515) do
     t.index ["manager_id"], name: "index_employees_on_manager_id"
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
     t.index ["restaurant_id"], name: "index_employees_on_restaurant_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_menu_items_on_category_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
