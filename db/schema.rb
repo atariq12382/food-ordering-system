@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_14_092816) do
+ActiveRecord::Schema.define(version: 2022_08_14_160833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 2022_08_14_092816) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
+  create_table "add_ons", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -49,12 +57,38 @@ ActiveRecord::Schema.define(version: 2022_08_14_092816) do
     t.index ["restaurant_id"], name: "index_categories_on_restaurant_id"
   end
 
+  create_table "deal_details", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.bigint "deal_menu_item_id"
+    t.index ["deal_id"], name: "index_deal_details_on_deal_id"
+    t.index ["deal_menu_item_id"], name: "index_deal_details_on_deal_menu_item_id"
+  end
+
+  create_table "deal_menu_items", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "deals", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "restaurant_id"
+    t.integer "price"
     t.index ["restaurant_id"], name: "index_deals_on_restaurant_id"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.string "name"
+    t.float "offPercent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_discounts_on_restaurant_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -78,6 +112,15 @@ ActiveRecord::Schema.define(version: 2022_08_14_092816) do
     t.index ["restaurant_id"], name: "index_employees_on_restaurant_id"
   end
 
+  create_table "menu_item_add_ons", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "menu_items_id"
+    t.bigint "add_ons_id"
+    t.index ["add_ons_id"], name: "index_menu_item_add_ons_on_add_ons_id"
+    t.index ["menu_items_id"], name: "index_menu_item_add_ons_on_menu_items_id"
+  end
+
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -86,6 +129,24 @@ ActiveRecord::Schema.define(version: 2022_08_14_092816) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
     t.index ["category_id"], name: "index_menu_items_on_category_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "menu_item_id"
+    t.index ["menu_item_id"], name: "index_options_on_menu_item_id"
+  end
+
+  create_table "promos", force: :cascade do |t|
+    t.string "code"
+    t.float "offPercent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "menu_item_id"
+    t.index ["menu_item_id"], name: "index_promos_on_menu_item_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
