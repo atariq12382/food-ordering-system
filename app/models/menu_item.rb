@@ -7,4 +7,6 @@ class MenuItem < ApplicationRecord
   has_many :options, class_name: "Option", foreign_key: "menu_item_id"
 
   has_many :promos, class_name: "Promo", foreign_key: "menu_item_id"
+
+  has_many :items, as: :item
 end
