@@ -1,0 +1,18 @@
+<% if notice %>
+	 <div class="alert alert-primary" role="alert">
+      <span class="fe fe-alert-circle fe-16 mr-2"></span> 
+        <button type="button" class="close dark" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+		<%= notice %>
+	</div>
+<% end %>
+<% if alert %>
+	 <div class="alert alert-danger" role="alert">
+        <span class="fe fe-minus-circle fe-16 mr-2"></span> 
+        <button type="button" class="close dark" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+		<%= alert %>
+	</div>
+<% end %>

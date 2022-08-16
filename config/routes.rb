@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'employee/index'
   root 'managers#dashboard'
   devise_for :employees, path: 'employees'
   devise_for :admin_users, ActiveAdmin::Devise.config

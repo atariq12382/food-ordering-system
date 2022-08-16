@@ -1,0 +1,65 @@
+<body class="dark ">
+  <div class="wrapper vh-100">
+    <div class="row align-items-center h-100">
+      <div class="col-lg-3 col-md-4 col-10 mx-auto text-center">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+            <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
+              <g>
+                <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
+                <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
+                <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
+              </g>
+            </svg>
+          </a>
+          <h1 class="h6 mb-3">Sign in</h1>
+          <div class="form-group">
+            <%= f.label :email, class: 'sr-only'%>
+            <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control form-control-lg', placeholder: "Email Address"%>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, class: "sr-only"%>
+            <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control form-control-lg', placeholder: "Password"%>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="form-group form-check checkbox mb-3">
+              <%= f.check_box :remember_me, class: 'form-check-input' %>
+              <%= f.label :remember_me, class: 'form-check-label' do %>
+              <%= resource.class.human_attribute_name('remember_me') %>
+            <% end %>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.submit  t('.sign_in'), class: 'btn btn-lg btn-primary btn-block' %>
+            <p class="mt-5 mb-3 text-muted"><%= link_to 'Sign Up', new_employee_registration_path %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= javascript_include_tag "jquery.min.js" %>
+  <%= javascript_include_tag "popper.min.js" %>
+  <%= javascript_include_tag "moment.min.js" %>
+  <%= javascript_include_tag "bootstrap.min.js" %>
+  <%= javascript_include_tag "simplebar.min.js" %>
+  <%= javascript_include_tag "daterangepicker.js" %>
+  <%= javascript_include_tag "jquery.stickOnScroll.js" %>
+  <%= javascript_include_tag "tinycolor-min.js" %>
+  <%= javascript_include_tag "config.js" %>
+  <%= javascript_include_tag "apps.js" %>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag()
+    {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-56159088-1');
+  </script>
+</body>
+
