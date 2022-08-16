@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_10_062655) do
+ActiveRecord::Schema.define(version: 2022_08_15_204037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2022_08_10_062655) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
+  create_table "add_ons", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -39,6 +47,140 @@ ActiveRecord::Schema.define(version: 2022_08_10_062655) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_categories_on_restaurant_id"
+  end
+
+  create_table "deal_details", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "deal_id"
+    t.bigint "deal_menu_item_id"
+    t.index ["deal_id"], name: "index_deal_details_on_deal_id"
+    t.index ["deal_menu_item_id"], name: "index_deal_details_on_deal_menu_item_id"
+  end
+
+  create_table "deal_menu_items", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "deals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.integer "price"
+    t.index ["restaurant_id"], name: "index_deals_on_restaurant_id"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.string "name"
+    t.float "offPercent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_discounts_on_restaurant_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "cnic"
+    t.string "address"
+    t.integer "salary"
+    t.string "contact"
+    t.bigint "manager_id"
+    t.bigint "restaurant_id"
+    t.index ["email"], name: "index_employees_on_email", unique: true
+    t.index ["manager_id"], name: "index_employees_on_manager_id"
+    t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+    t.index ["restaurant_id"], name: "index_employees_on_restaurant_id"
+  end
+
+  create_table "menu_item_add_ons", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "menu_items_id"
+    t.bigint "add_ons_id"
+    t.index ["add_ons_id"], name: "index_menu_item_add_ons_on_add_ons_id"
+    t.index ["menu_items_id"], name: "index_menu_item_add_ons_on_menu_items_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_menu_items_on_category_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "menu_item_id"
+    t.index ["menu_item_id"], name: "index_options_on_menu_item_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "item_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.float "total"
+    t.string "status"
+    t.string "paymentType"
+    t.string "paymentStatus"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
+  end
+
+  create_table "promos", force: :cascade do |t|
+    t.string "code"
+    t.float "offPercent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "menu_item_id"
+    t.index ["menu_item_id"], name: "index_promos_on_menu_item_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "owner"
+    t.decimal "perCut"
+    t.time "openingHours"
+    t.time "closingHours"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "manager_id"
+    t.index ["manager_id"], name: "index_restaurants_on_manager_id"
   end
 
 end
