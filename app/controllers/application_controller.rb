@@ -15,5 +15,14 @@ class ApplicationController < ActionController::Base
     end
     
   end
+
+  def after_sign_up_path_for(resource)
+    if current_employee.manager_id != nil
+      welcome_index_path
+    else
+      root_path
+    end
+    
+  end
   
 end

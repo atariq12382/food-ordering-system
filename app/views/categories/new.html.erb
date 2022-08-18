@@ -1,0 +1,27 @@
+<body class="vertical  dark  ">
+  <div class="wrapper">
+    <%= render 'layouts/managerTopNavbar' %>
+    <%= render 'layouts/managerSideNavbar' %>
+    <main role="main" class="main-content">
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <h2 class="h3 mb-3 page-title">New Category</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center h-100" style="margin-top:15%;">
+        <div class="col-lg-3 col-md-4 col-10 mx-auto text-center">
+          <%= form_for @category do |f| %>
+
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control form-control-lg", placeholder: "Name" %>
+          </div>
+          <%= f.submit "Update", class: "btn btn-lg btn-primary btn-block" %>
+          <% end %>
+        </div>
+      </div>
+    </main>
+  </div>
+  <%= render 'layouts/scriptsAdd' %>
+</body>

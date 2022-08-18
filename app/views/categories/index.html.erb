@@ -14,6 +14,11 @@
                     <li class="nav-item">
                       <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">All <span class="badge badge-pill bg-primary text-white ml-2"><%= @categories.count %></span></a>
                     </li>
+                    <div class="form-inline ml-auto searchform text-muted">
+                      <%= search_form_for @q do |f| %>
+                        <%= f.search_field :name_cont, class: "form-control mr-sm-2 bg-transparent border<-0 pl-4 text-muted", placeholder: "Search!"%>
+                      <% end %>
+                    </div>
                   </ul>
                 </div>
               </div>
@@ -36,9 +41,8 @@
                           <span class="text-muted sr-only">Action</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <a class="dropdown-item" href="#">Edit</a>
+                          <%= link_to "Edit", edit_category_path(category), class: "dropdown-item"%>
                           <a class="dropdown-item" href="#">Remove</a>
-                          <a class="dropdown-item" href="#">Assign</a>
                         </div>
                       </div>
                     </td>
