@@ -1,11 +1,17 @@
+
 <nav class="topnav navbar navbar-light">
+
   <div class="mr-auto">
     <h1>Welcome <%= current_employee.name %> </h1>
   </div>
   <ul class="nav">
   <li class="nav-item">
       <span class="avatar avatar-sm mt-5 ml-2">
+        <% if current_employee.image.present? %>
+        <%= image_tag current_employee.image, class: "avatar-img rounded-circle" %>
+        <% else %>
         <%= image_tag 'face-1.jpg', class: "avatar-img rounded-circle" %>
+        <% end %>
       </span>
     </li>
   </ul>

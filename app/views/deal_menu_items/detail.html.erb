@@ -12,13 +12,19 @@
       </div>
       <div class="row align-items-center h-100" style="margin-top:15%;">
         <div class="col-lg-3 col-md-4 col-10 mx-auto text-center">
-          <%= form_tag categories_path, method: :post do %>
-
-          <div class="form-group">
-            <%= text_field_tag :name, params[:name], class: "form-control form-control-lg", placeholder: "Name" %>
+          <%= form_tag deal_menu_item_associate_path, method: :post do %>
+          <div class="form-group mb-3 mt-3">
+            <%= label_tag "Deal", nil, class: "d-inline" %>
+            <% options = options_from_collection_for_select(@deals, 'id', 'name') %>
+            <%= select_tag :deal, options, class: "form-control form-control-lg" %>
+          </div>
+          <div class="form-group mb-3 mt-3">
+            <%= label_tag "Deal Items", nil, class: "d-inline" %>
+            <% options = options_from_collection_for_select(@deal_menu_items, 'id', 'name') %>
+            <%= select_tag :deal_menu_item, options, class: "form-control form-control-lg" %>
           </div>
           <%= button_tag type: :submit, class: "btn btn-lg btn-primary btn-block" do %>
-          Add Category
+          Add To Deal
           <% end %>
           <% end %>
         </div>

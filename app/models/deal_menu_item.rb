@@ -3,4 +3,5 @@ class DealMenuItem < ApplicationRecord
   has_many :deals, through: :deal_details
 
   has_many :items, as: :item
+  has_one_attached :image
 end

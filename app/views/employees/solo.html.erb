@@ -1,0 +1,53 @@
+<body class="vertical  dark  ">
+  <div class="wrapper">
+    <%= render 'layouts/managerTopNavbar' %>
+    <%= render 'layouts/managerSideNavbar' %>
+    <main role="main" class="main-content">
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <h2 class="h3 mb-3 page-title">Edit Employee: <%= @employee.name %></h2>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center h-100" style="margin-top:5%;">
+        <div class="col-lg-3 col-md-4 col-10 mx-auto text-center">
+          <%= form_for @employee do |f| %>
+
+          <div class="form-group">
+            <%= f.label "Email", class: "d-inline" %>
+            <%= f.text_field :email, class: "form-control form-control-lg", placeholder: "Email", readonly: true %>
+          </div>
+           <div class="form-group">
+            <%= f.label "Name", class: "d-inline" %>
+            <%= f.text_field :name, class: "form-control form-control-lg", placeholder: "Name", readonly: true  %>
+          </div>
+           <div class="form-group">
+            <%= f.label "CNIC", class: "d-inline" %>
+            <%= f.text_field :cnic, class: "form-control form-control-lg", placeholder: "CNIC", readonly: true  %>
+          </div>
+           <div class="form-group">
+            <%= f.label "Address", class: "d-inline" %>
+            <%= f.text_field :address, class: "form-control form-control-lg", placeholder: "Address", readonly: true  %>
+          </div>
+           <div class="form-group">
+            <%= f.label "Salary", class: "d-inline" %>
+            <%= f.text_field :salary, class: "form-control form-control-lg", placeholder: "Salary", readonly: true  %>
+          </div>
+           <div class="form-group">
+            <%= f.label "Contact", class: "d-inline" %>
+            <%= f.text_field :contact, class: "form-control form-control-lg", placeholder: "Contact", readonly: true  %>
+          </div>
+          <div class="form-group mb-3">
+            <%= f.label "Image", class: "d-inline" %>
+            <% if @employee.image.attached? %>
+              <%= image_tag @employee.image, style: "width: 380px; height: 200px; display: block;" %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </main>
+  </div>
+  <%= render 'layouts/scriptsAdd' %>
+</body>

@@ -1,0 +1,55 @@
+
+  <body class="vertical  dark  ">
+    <div class="wrapper">
+    <%= render 'layouts/managerTopNavbar' %>
+    <%= render 'layouts/managerSideNavbar' %>
+
+      <main role="main" class="main-content">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <h2 class="h3 mb-3 page-title"><%= @deal.name %></h2>
+              <div class="row mb-4 items-align-center">
+                <div class="col-md">
+                  <ul class="nav nav-pills justify-content-start">
+                    <li class="nav-item">
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">All <span class="badge badge-pill bg-primary text-white ml-2"><%= @menu_items.count %></span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <table class="table border table-hover bg-white">
+                <thead>
+                  <tr role="row">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @menu_items.each do |item| %>
+                  <tr>
+                    <td><%= item.id %></td>
+                    <td><%= link_to item.name, menu_item_path(item) %></td>
+                    <td><%= item.status %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <nav aria-label="Table Paging" class="my-3">
+                <ul class="pagination justify-content-end mb-0">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div> <!-- .row -->
+        </div> <!-- .container-fluid -->
+      </main> <!-- main -->
+    </div> <!-- .wrapper -->
+      <%= render 'layouts/scriptsAdd' %>
+  </body>
+</html>

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_employee.manager_id != nil
+    if current_employee.manager_id != nil && current_employee.restaurant_id != nil
       welcome_index_path
     else
       root_path
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource)
-    if current_employee.manager_id != nil
+    if current_employee.manager_id != nil && current_employee.restaurant_id != nil
       welcome_index_path
     else
       root_path

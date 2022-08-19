@@ -9,4 +9,6 @@ class MenuItem < ApplicationRecord
   has_many :promos, class_name: "Promo", foreign_key: "menu_item_id"
 
   has_many :items, as: :item
+
+  has_one_attached :image
 end

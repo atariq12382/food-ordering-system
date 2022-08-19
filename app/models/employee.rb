@@ -13,6 +13,8 @@ class Employee < ApplicationRecord
 
   has_one :restaurant, class_name: 'Restaurant', foreign_key: 'manager_id'
 
+  has_one_attached :image
+
   # calls the custom validation we will define later
   validate :manager_must_be_a_manager, unless: :manager?
 

@@ -12,13 +12,27 @@
       </div>
       <div class="row align-items-center h-100" style="margin-top:15%;">
         <div class="col-lg-3 col-md-4 col-10 mx-auto text-center">
-          <%= form_tag categories_path, method: :post do %>
+          <%= form_tag menu_items_path, method: :post do %>
 
           <div class="form-group">
+            <%= label_tag "Name", nil, class: "d-inline" %>
             <%= text_field_tag :name, params[:name], class: "form-control form-control-lg", placeholder: "Name" %>
           </div>
+          <div class="form-group mb-3 mt-3">
+            <%= label_tag "Category", nil, class: "d-inline" %>
+            <% options = options_from_collection_for_select(@categories, 'id', 'name') %>
+            <%= select_tag :category, options, class: "form-control form-control-lg" %>
+          </div>
+           <div class="form-group">
+            <%= label_tag "Price", nil, class: "d-inline" %>
+            <%= text_field_tag :price, params[:price], class: "form-control form-control-lg", placeholder: "Price" %>
+          </div>
+           <div class="form-group">
+            <%= label_tag "status", nil, class: "d-inline" %>
+            <%= text_field_tag :status, params[:status], class: "form-control form-control-lg", placeholder: "Status" %>
+          </div>
           <%= button_tag type: :submit, class: "btn btn-lg btn-primary btn-block" do %>
-          Add Category
+          Add Menu Item
           <% end %>
           <% end %>
         </div>

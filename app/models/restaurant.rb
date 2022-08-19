@@ -12,4 +12,7 @@ class Restaurant < ApplicationRecord
   has_many :discounts, class_name: "Discount", foreign_key: 'restaurant_id'
 
   has_many :orders, class_name: "Order", foreign_key: 'restaurant_id'
+
+  has_many :menu_items, through: :categories
+  has_many :deal_menu_items, through: :deals
 end

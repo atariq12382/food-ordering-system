@@ -6,20 +6,21 @@
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-12">
-            <h2 class="h3 mb-3 page-title">Add New</h2>
+            <h2 class="h3 mb-3 page-title">Edit Deal: <%= @deal.name %></h2>
           </div>
         </div>
       </div>
       <div class="row align-items-center h-100" style="margin-top:15%;">
         <div class="col-lg-3 col-md-4 col-10 mx-auto text-center">
-          <%= form_tag categories_path, method: :post do %>
+          <%= form_for @deal do |f| %>
 
           <div class="form-group">
-            <%= text_field_tag :name, params[:name], class: "form-control form-control-lg", placeholder: "Name" %>
+            <%= f.text_field :name, class: "form-control form-control-lg", placeholder: "Name" %>
           </div>
-          <%= button_tag type: :submit, class: "btn btn-lg btn-primary btn-block" do %>
-          Add Category
-          <% end %>
+          <div class="form-group">
+            <%= f.text_field :price, class: "form-control form-control-lg", placeholder: "Price" %>
+          </div>
+          <%= f.submit "Update", class: "btn btn-lg btn-primary btn-block" %>
           <% end %>
         </div>
       </div>

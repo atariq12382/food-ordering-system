@@ -8,12 +8,12 @@
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-12">
-              <h2 class="h3 mb-3 page-title">Categories</h2>
+              <h2 class="h3 mb-3 page-title">Menu Items</h2>
               <div class="row mb-4 items-align-center">
                 <div class="col-md">
                   <ul class="nav nav-pills justify-content-start">
                     <li class="nav-item">
-                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">All <span class="badge badge-pill bg-primary text-white ml-2"><%= @categories.count %></span></a>
+                      <a class="nav-link active bg-transparent pr-2 pl-0 text-primary" href="#">All <span class="badge badge-pill bg-primary text-white ml-2"><%= @menu_items.count %></span></a>
                     </li>
                     <div class="form-inline ml-auto searchform text-muted">
                       <%= search_form_for @q do |f| %>
@@ -28,22 +28,26 @@
                   <tr role="row">
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                <% @categories.each do |category| %>
+                <% @menu_items.each do |menu_item| %>
                   <tr>
-                    <td><%= category.id %></td>
-                    <td><%= link_to category.name, category_path(category) %></td>
+                    <td><%= menu_item.id %></td>
+                    <td><%= link_to menu_item.name, menu_item_path(menu_item) %></td>
+                    <td><%= menu_item.price %></td>
+                    <td><%= menu_item.category.name %></td>
                     <td>
                       <div class="dropdown">
                         <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="text-muted sr-only">Action</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                          <%= link_to "Edit", edit_category_path(category), class: "dropdown-item"%>
-                          <%= button_to 'Delete', category_path(category), class: "dropdown-item",  method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}} %>
+                          <%= link_to "Edit", edit_menu_item_path(menu_item), class: "dropdown-item"%>
+                          <%= button_to 'Delete', menu_item_path(menu_item), class: "dropdown-item",  method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}} %>
                         </div>
                       </div>
                     </td>
@@ -54,8 +58,8 @@
               <nav aria-label="Table Paging" class="my-3">
                 <ul class="pagination justify-content-end mb-0">
                   <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
                   <li class="page-item"><a class="page-link" href="#">3</a></li>
                   <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
